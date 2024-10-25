@@ -67,7 +67,7 @@ for iface in $(ls /sys/class/net/ | grep -Ev "lo|bootnet|br0|vir"); do
   current_mac=$(cat /sys/class/net/$iface/address)
   if [[ $current_mac == $MAC_PREFIX* ]]; then
     # Convert SUFFIX to a MAC format (convert hex to standard MAC address format)
-    new_mac="$prefix:$octet1:$octet2"
+    new_mac="$MAC_PREFIX:$octet1:$octet2"
     echo "Changing MAC address of $iface from $current_mac to $new_mac"
       #Increment the suffix for the next MAC address
   fi
