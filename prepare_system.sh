@@ -34,7 +34,7 @@ systemctl stop ntp > /dev/null 2>&1
 }
 function reload_driver {
 if [[ -f $ICE_DRIVER_PATH && "$ICE_DRIVER_PATH" == *".ko" ]]; then
-    echo -e "${GREEN}Removing old and inserting new ice driver...${RESET}\n"
+    echo -e "${GREEN}Removing old and inserting new ice driver...${RESET}"
     rmmod irdma > /dev/null 2>&1
     rmmod ice > /dev/null 2>&1
     insmod $ICE_DRIVER_PATH
@@ -67,10 +67,7 @@ for iface in $(ls /sys/class/net/ | grep -Ev "lo|bootnet|br0|vir"); do
     # Convert SUFFIX to a MAC format (convert hex to standard MAC address format)
     new_mac=$(printf "%02x:%02x:%02x:%02x:%02x:%02x" 0 0 0 0 $((SUFFIX >> 8)) $((SUFFIX & 0xff)))
     echo "Changing MAC address of $iface from $current_mac to $new_mac"
-    sudo ip link set dev $iface down
-    sudo ip link set dev $iface address $new_mac
-    sudo ip link set dev $iface up
-    #Increment the suffix for the next MAC address
+      #Increment the suffix for the next MAC address
     SUFFIX=$((SUFFIX + 1))
   fi
 done
@@ -81,5 +78,5 @@ stop_useless_services
 reload_driver
 change_wrong_mac_addresses
 enable_all_interfaces
-print_links_info
 run_user_commands
+print_links_info
