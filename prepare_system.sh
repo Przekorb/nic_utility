@@ -18,7 +18,7 @@ SCRIPT_NAME=$(basename "$0")
 INSTALL_DESTINATION="/usr/local/bin/$SCRIPT_NAME"
 #add commands specific to debug
 function run_user_commands {
-echo -e "${GREEN}Executing commands from DEBUG_COMMANDS...${RESET}"
+echo -e "${GREEN}Executing command from DEBUG_COMMANDS: $DEBUG_COMMANDS ${RESET}"
 eval "$DEBUG_COMMANDS"
 }
 #install script to /usr/local/bin
