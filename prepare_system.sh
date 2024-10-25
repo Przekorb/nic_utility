@@ -1,5 +1,5 @@
 ###
-# v1.0 Script to reload ice driver from given path, enable all 
+# v1.1 Script to reload ice driver from given path, enable all 
 #network interfaces and list if links are detected.
 #
 # usage: ./prepare_system [path_to_driver]
@@ -45,7 +45,7 @@ fi
 #Enabling all interfaces in the system#
 function enable_all_interfaces {
 echo -e "${GREEN}Enabling all network interfaces in the system...${RESET}"
-echo -e "Loading interfaces and IPs list...\n"
+echo -e "Loading interfaces and IPs list..."
 for interface in $INTERFACES; do
     sudo ip link set "$interface" up
 done
