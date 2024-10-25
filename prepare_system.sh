@@ -9,9 +9,7 @@ RED='\e[31m'
 GREEN='\e[32m'
 RESET='\e[0m'
 # if MAC address starts with MAC_PREFIX, change it to random one
-MAC_PREFIX="00:00:00:00" 
-# Starting suffix for new MAC address assignments 
-SUFFIX=0x0120 
+MAC_PREFIX="00:00:00:00:00" 
 INTERFACES=$(ip -o link show | awk -F': ' '{print $2}' | grep -v lo)
 ICE_DRIVER_PATH=$1
 SCRIPT_NAME=$(basename "$0")
@@ -67,7 +65,7 @@ octet2=$(printf '%02X' $((RANDOM % 256)))
   current_mac=$(cat /sys/class/net/$iface/address)
   if [[ $current_mac == $MAC_PREFIX* ]]; then
     # Convert SUFFIX to a MAC format (convert hex to standard MAC address format)
-    new_mac="$MAC_PREFIX:$octet1:$octet2"
+    new_mac="00:00:00:00:$octet1:$octet2"
     echo "Changing MAC address of $iface from $current_mac to $new_mac"
     ip link set dev $iface address $new_mac
   fi
