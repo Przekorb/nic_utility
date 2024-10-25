@@ -8,7 +8,7 @@
 RED='\e[31m'
 GREEN='\e[32m'
 RESET='\e[0m'
-# if MAC address starts with MAC_PREFIX, change it
+# if MAC address starts with MAC_PREFIX, change it to random one
 MAC_PREFIX="00:00:00:00" 
 # Starting suffix for new MAC address assignments 
 SUFFIX=0x0120 
@@ -61,14 +61,15 @@ for iface in $INTERFACES; do
 done
 }
 function change_wrong_mac_addresses {
+octet1=$(printf '%02X' $((RANDOM % 256)))
+octet2=$(printf '%02X' $((RANDOM % 256)))
 for iface in $(ls /sys/class/net/ | grep -Ev "lo|bootnet|br0|vir"); do
   current_mac=$(cat /sys/class/net/$iface/address)
   if [[ $current_mac == $MAC_PREFIX* ]]; then
     # Convert SUFFIX to a MAC format (convert hex to standard MAC address format)
-    new_mac=$(printf "%02x:%02x:%02x:%02x:%02x:%02x" 0 0 0 0 $((SUFFIX >> 8)) $((SUFFIX & 0xff)))
+    new_mac="$prefix:$octet1:$octet2"
     echo "Changing MAC address of $iface from $current_mac to $new_mac"
       #Increment the suffix for the next MAC address
-    SUFFIX=$((SUFFIX + 1))
   fi
 done
 }
