@@ -2,7 +2,7 @@
 # v1.1 Script to reload ice driver from given path, enable all 
 #network interfaces and list if links are detected.
 #
-# usage: ./prepare_system [path_to_driver]
+# usage: ./nic_utility.sh [path_to_driver]
 # set DEBUG_COMMANDS environment variable to run your own commands.
 ###
 RED='\e[31m'
