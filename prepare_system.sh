@@ -61,15 +61,15 @@ for iface in $INTERFACES; do
 done
 }
 function change_wrong_mac_addresses {
+for iface in $(ls /sys/class/net/ | grep -Ev "lo|bootnet|br0|vir"); do
 octet1=$(printf '%02X' $((RANDOM % 256)))
 octet2=$(printf '%02X' $((RANDOM % 256)))
-for iface in $(ls /sys/class/net/ | grep -Ev "lo|bootnet|br0|vir"); do
   current_mac=$(cat /sys/class/net/$iface/address)
   if [[ $current_mac == $MAC_PREFIX* ]]; then
     # Convert SUFFIX to a MAC format (convert hex to standard MAC address format)
     new_mac="$MAC_PREFIX:$octet1:$octet2"
     echo "Changing MAC address of $iface from $current_mac to $new_mac"
-      #Increment the suffix for the next MAC address
+    ip link set dev $iface address $new_mac
   fi
 done
 }
