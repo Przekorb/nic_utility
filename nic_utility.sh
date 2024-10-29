@@ -10,7 +10,7 @@ RED='\e[31m'
 GREEN='\e[32m'
 RESET='\e[0m'
 # if MAC address starts with MAC_PREFIX, change it to random one
-MAC_PREFIX="00:00:00:00:00"
+MAC_PREFIX="00:00:00:00"
 INTERFACES=$(ip -o link show | awk -F': ' '{print $2}' | grep -v lo)
 ICE_DRIVER_PATH=$1
 SCRIPT_NAME=$(basename "$0")
