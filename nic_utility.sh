@@ -1,5 +1,5 @@
 ###
-# v1.1 Script for NIC's enumeration, enabling all links, disabling ntp and firewall,
+# v1.2 Script for NIC's enumeration, enabling all links, disabling ntp and firewall,
 # disabling network manager on interfaces with ice driver,
 # list if links are detected and optionally some ice driver operations
 #
@@ -91,9 +91,9 @@ done
 
 ### Main ###
 install_script
-stop_nmcli_and_useless_services
 reload_ice_driver
 change_wrong_mac_addresses
+stop_nmcli_and_useless_services
 enable_all_interfaces
 run_user_commands
 print_links_info
