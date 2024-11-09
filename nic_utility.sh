@@ -96,4 +96,5 @@ change_wrong_mac_addresses
 stop_nmcli_and_useless_services
 enable_all_interfaces
 run_user_commands
+sleep 0.3
 print_links_info
