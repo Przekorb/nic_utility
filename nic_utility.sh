@@ -1,7 +1,8 @@
 ###
 # v1.2 Script for NIC's enumeration, enabling all links, disabling ntp and firewall,
 # disabling network manager on interfaces with ice driver,
-# list if links are detected and optionally some ice driver operations
+# list if links are detected and optionally some ice 
+# driver operations if $DEBUG_COMMANDS is set
 #
 # usage: ./nic_utility.sh [path_to_driver]
 # set DEBUG_COMMANDS environment variable to run your own commands.
