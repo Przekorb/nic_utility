@@ -16,8 +16,8 @@ INTERFACES=$(ip -o link show | awk -F': ' '{print $2}' | grep -v lo)
 ICE_DRIVER_PATH=$1
 SCRIPT_NAME=$(basename "$0")
 # copy the script to /usr/bin, and /usr/local/bin by default
-INSTALL_DESTINATION="/usr/bin/$SCRIPT_NAME"
-INSTALL_DESTINATION2="/usr/local/bin/$SCRIPT_NAME"
+INSTALL_DEST="/usr/bin/$SCRIPT_NAME"
+INSTALL_DEST2="/usr/local/bin/$SCRIPT_NAME"
 
 #add commands specific to debug
 function run_user_commands {
@@ -27,10 +27,11 @@ eval "$DEBUG_COMMANDS"
 
 #install script to /usr/local/bin
 function install_script {
-cp "$0" "$INSTALL_DESTINATION" > /dev/null 2>&1
-cp "$0" "$INSTALL_DESTINATION2" > /dev/null 2>&1
-chmod +x "$INSTALL_DESTINATION"
-echo -e "${GREEN}Script copied to $INSTALL_DESTINATION${RESET}"
+cp "$0" "$INSTALL_DEST" > /dev/null 2>&1
+cp "$0" "$INSTALL_DEST2" > /dev/null 2>&1
+chmod +x "$INSTALL_DEST/nic_utility.sh" > /dev/null 2>&1
+chmod +x "$INSTALL_DEST2/nic_utility.sh" > /dev/null 2>&1
+echo -e "${GREEN}Script copied to $INSTALL_DEST, and $INSTALL_DEST2${RESET}"
 
 }
 
